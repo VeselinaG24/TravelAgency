@@ -1,0 +1,16 @@
+package com.example.travelagencyproject.repositories.interfaces;
+
+import com.example.travelagencyproject.models.Location;
+
+import java.util.List;
+public interface LocationRepository {
+    List<Location> getAll();
+
+    Location getById(long id);
+
+    void create(Location location);
+
+    void update(Location location);
+
+    void delete(int id);
+}
