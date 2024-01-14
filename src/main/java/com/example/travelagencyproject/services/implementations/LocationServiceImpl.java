@@ -28,6 +28,11 @@ public class LocationServiceImpl implements LocationService {
     }
 
     @Override
+    public Location getByName(String name) {
+        return repository.getByName(name);
+    }
+
+    @Override
     public void create(Location location) {
         repository.create(location);
     }

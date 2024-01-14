@@ -37,6 +37,20 @@ public class LocationRepositoryImpl implements LocationRepository {
     }
 
     @Override
+    public Location getByName(String name) {
+        try (Session session = sessionFactory.openSession()) {
+            Query<Location> query = session.createQuery("from Location where city = :name OR country = :name", Location.class);
+            query.setParameter("name", name);
+            List<Location> locations = query.list();
+            if (locations.size() == 0) {
+                throw new EntityNotFoundException("Name", "name", name);
+            }
+
+            return locations.get(0);
+        }
+    }
+
+    @Override
     public void create(Location location) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();

@@ -8,6 +8,7 @@ public interface LocationRepository {
 
     Location getById(long id);
 
+    Location getByName(String name);
     void create(Location location);
 
     void update(Location location);

@@ -1,7 +1,9 @@
 package com.example.travelagencyproject.repositories.implementations;
 
 import com.example.travelagencyproject.models.Holiday;
+import com.example.travelagencyproject.models.Location;
 import com.example.travelagencyproject.repositories.interfaces.HolidayRepository;
+import com.example.travelagencyproject.services.interfaces.LocationService;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -14,9 +16,10 @@ import java.util.Optional;
 @Repository
 public class HolidayRepositoryImpl implements HolidayRepository {
     private final SessionFactory sessionFactory;
-
-    public HolidayRepositoryImpl(SessionFactory sessionFactory) {
+    private final LocationService locationService;
+    public HolidayRepositoryImpl(SessionFactory sessionFactory, LocationService locationService) {
         this.sessionFactory = sessionFactory;
+        this.locationService = locationService;
     }
 
     @Override
@@ -36,7 +39,9 @@ public class HolidayRepositoryImpl implements HolidayRepository {
             Query<Holiday> query = session.createQuery(queryString, Holiday.class);
 
             if (location.isPresent()) {
-                query.setParameter("location", location.orElse(" "));
+                String locationName = location.get();
+                Location location1 = locationService.getByName(locationName);
+                query.setParameter("location", location1);
             }
             if (startDate.isPresent()) {
                 String date = startDate.get();
