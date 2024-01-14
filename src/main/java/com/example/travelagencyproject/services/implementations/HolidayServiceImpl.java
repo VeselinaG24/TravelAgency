@@ -6,7 +6,6 @@ import com.example.travelagencyproject.services.interfaces.HolidayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,7 +20,7 @@ public class HolidayServiceImpl implements HolidayService {
 
 
     @Override
-    public List<Holiday> getAll(Optional<String> location, Optional<Date> startDate, Optional<Integer> duration) {
+    public List<Holiday> getAll(Optional<String> location, Optional<String> startDate, Optional<Integer> duration) {
         return repository.getAll(location, startDate, duration);
     }
 

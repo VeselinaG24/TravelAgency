@@ -1,6 +1,5 @@
 package com.example.travelagencyproject.controllers;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,7 +39,7 @@ public class HolidayController {
     @GetMapping
     public ResponseEntity<List<Holiday>> getAllHolidays(
             @RequestParam(name = "location", required = false) Optional<String> location,
-            @RequestParam(name = "startDate", required = false) Optional<Date> startDate,
+            @RequestParam(name = "startDate", required = false) Optional<String> startDate,
             @RequestParam(name = "duration", required = false) Optional<Integer> duration){
         return new ResponseEntity<>(service.getAll(location, startDate, duration), HttpStatus.OK);
     }

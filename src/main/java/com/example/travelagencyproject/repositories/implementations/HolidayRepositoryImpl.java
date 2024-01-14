@@ -20,7 +20,7 @@ public class HolidayRepositoryImpl implements HolidayRepository {
     }
 
     @Override
-    public List<Holiday> getAll(Optional<String> location, Optional<Date> startDate, Optional<Integer> duration) {
+    public List<Holiday> getAll(Optional<String> location, Optional<String> startDate, Optional<Integer> duration) {
         try (Session session = sessionFactory.openSession()) {
             String queryString = "from Holiday where 1=1";
             if (location.isPresent()) {
@@ -39,7 +39,9 @@ public class HolidayRepositoryImpl implements HolidayRepository {
                 query.setParameter("location", location.orElse(" "));
             }
             if (startDate.isPresent()) {
-                query.setParameter("startDate", startDate.orElse(null));
+                String date = startDate.get();
+                Date newDate = java.sql.Date.valueOf(date);
+                query.setParameter("startDate", newDate);
             }
             if (duration.isPresent()) {
                 query.setParameter("duration", duration.orElse(0));

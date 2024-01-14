@@ -20,6 +20,7 @@ public class Holiday {
         private String title;
 
         @Column(name = "startDate")
+        @Temporal(TemporalType.DATE)
         private Date startDate;
 
         @Column(name = "duration")
