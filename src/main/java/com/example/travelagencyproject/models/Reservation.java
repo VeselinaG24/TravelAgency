@@ -57,5 +57,4 @@ public class Reservation {
         this.holiday = holiday;
     }
 
-    //test comment
 }
