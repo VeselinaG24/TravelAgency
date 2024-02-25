@@ -56,4 +56,6 @@ public class Reservation {
     public void setHoliday(Holiday holiday) {
         this.holiday = holiday;
     }
+
+    //test comment
 }
